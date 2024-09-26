@@ -4,6 +4,11 @@ While the time and effort required is rather high, this allows for custom recolo
 model in Gran Turismo 4. This includes cars, wheels, tires, driver models, etc.
 And, to a slightly lesser extent any GT game that uses the Tex1 format.
 
+Creating a black variation of the 1999 Impreza WRC:
+<p align="center">
+  <img width="640" height="360" src="https://github.com/Silentwarior112/GT4-pat-editor/blob/main/pink%20vitz.png">
+</p>
+
 You will also need [GT4-pat-editor](https://github.com/Silentwarior112/GT4-pat-editor) to get the
 full suite of tools needed.
 
