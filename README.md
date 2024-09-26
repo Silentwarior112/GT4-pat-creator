@@ -6,7 +6,7 @@ And, to a slightly lesser extent any GT game that uses the Tex1 format.
 
 Creating a black variation of the 1999 Impreza WRC:
 <p align="center">
-  <img width="640" height="360" src="https://github.com/Silentwarior112/GT4-pat-editor/blob/main/pink%20vitz.png">
+  <img width="640" height="360" src="https://github.com/Silentwarior112/GT4-pat-creator/blob/main/black%20imprezawrc.PNG">
 </p>
 
 You will also need [GT4-pat-editor](https://github.com/Silentwarior112/GT4-pat-editor) to get the
