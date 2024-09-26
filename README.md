@@ -1,9 +1,11 @@
 # GT4-pat-creator
 Python scripts to automate generation of GT4 color patch files from scratch without an existing pat file.
 While the time and effort required is rather high, this allows for custom recoloring of any
-car in Gran Turismo 4 and to a slightly lesser extent any GT game that uses the Tex1 format.
+model in Gran Turismo 4. This includes cars, wheels, tires, driver models, etc.
+And, to a slightly lesser extent any GT game that uses the Tex1 format.
 
-After generating pat files, you will need to edit them with [GT4-pat-editor](https://github.com/Silentwarior112/GT4-pat-editor).
+You will also need [GT4-pat-editor](https://github.com/Silentwarior112/GT4-pat-editor) to get the
+full suite of tools needed.
 
 -- GT4 Color patch generator script --
 Creates GT4 pat files based on the difference between two MDLS models.
@@ -17,10 +19,10 @@ to help rule out irrelevant pixels.
    This preserves all of the header data.
 
 Usage:
-1. Split the model file using the Model extractor & rebuilder script,
-at least extract the MainModel.
+1. Split the model file using the [Model extractor & rebuilder](https://github.com/Silentwarior112/GT4-pat-editor) script,
+at the very least, extract the MainModel.
 
-2. Extract the necessary Tex1 file(s) inside the MainModel.bin.
+2. Extract the necessary Tex1 file(s) that are inside the MainModel.bin file.
 	- Many cars have multiple Tex1 files inside their models but
 	in general there should only be one that is relevant which is
 	going to be the "big" Tex1, it should be the first one packed 
@@ -32,47 +34,53 @@ at least extract the MainModel.
 	to select. HxD will show your highlighted length in the bottom right.
 
 	Once the bytes are copied, paste them into a new binary file in the hex
-	editor and save as a separate file. The file extension can simply be .bin.
+	editor and save as a separate file. You can name it something such as
+	MainModelTex1_test. The file extension can simply be .bin.
 	
-3. Before continuing, make duplicates of the MainModel.bin file and the Tex1 file your
+4. Before continuing, make duplicates of the MainModel.bin file and the Tex1 file you
 	just saved. Rename the filenames and add something such as _original to make clear which
 	file is which.
 	
-4. Use the Tex1 to PNG Byte map script to extract the relevant binary data
+5. Use the Tex1 to PNG Byte map script to extract the relevant binary data
 	from the Tex1 and import that data into a PNG.
 	- The script will output the PNG, and a mask PNG.
 	The mask PNG recolors every pixel depending on certain criteria
 	to determine which pixels should be ruled out and which to focus on.
 	In the mask, there are 4 categories of pixels:
 	Red: Has 0 opacity. Mostly ignore except for pixels with relevant RGB values adjacent to relevant pixels.
-	Green: Invalid
-	Blue: Valid Colors
-	Differenced: Valid shades
+	Green: Invalid, opacity greater than 128
+	Blue: Valid colors
+	Black: Valid shades
 	
-5. Open an image editor and open the two PNG files. Paint.net is recommended as it preserves all 4 channel values of pixels
-regardless of the channel values.
+6. Open an image editor and open the two PNG files. Paint.net is recommended as it always preserves RGBA values.
+   Other programs may not.
+	When saving, it's a good idea to also save the modified PNG as a separate file in case you need
+	to go back to it.
 
-Use the mask file to get an idea of which pixels
-	to consider. The most important thing to look for are single-pixel height gradient strips.
+Use the mask file to get an idea of which pixels to consider.
+You can add the mask as a layer to get the selectons and separate the pixels out
+into separate layers. From there you can show/hide each layer for visibility.
+The most important thing to look for are single-pixel height gradient strips.
 	If the color of those gradients appears relevant, it's nearly a guarantee that it is.
 	
-	Techniques:
+        Techniques:
 	1. Magic Wand: Global flood mode with ~20% or less tolerance.
 	Select a relevant pixel and allow the magic wand to select
 	pixels for you. This could give a starting point that you can
-	use for later passes.
+	use to spot potential relevant pixels.
 	
-	2. "Big square overwrite": When trying to pinpoint a certain section
+	2. "Big rectangle overwrite": When trying to pinpoint a certain section
 	of the car you need to find, you can overwrite a chunk of the entire
 	PNG with a single color. For example, the top half, quarter, eighth, etc.
 	You can check if the desired part of the model
 	changed to that color. If it didn't, go back and move the square to the next
 	section and try again until the part changes. When it does, continue to shrink the
-	square until you are able to pinpoint the pixels responsible.
+	rectangle until you are able to pinpoint the pixels responsible.
 	
 	3. Remember, this is only to generate the target offsets needed to make the color patch.
 	Do not waste effort trying to recolor the car in any kind of 'proper' way just yet.
 	Change the pixels to anything that would be obvious and use basic effects.
+ 	Inverting colors and greyscale work well, Hue can be helpful sometimes as well.
 	
 6. Once the PNG is edited, use the Tex1 to PNG Byte map script again and this time import
 	the PNG into the Tex1.
@@ -80,20 +88,23 @@ Use the mask file to get an idea of which pixels
 	Save the output file as a separate file, name it something such as MainModelTex1_test.
 
 7. Inject the Tex1 into the MainModel (MDLS). HxD provides quick injection and re-injection
-into the MDLS as files update with HxD in real time.
-	- Open the MainModel MDLS file, and also open the Tex1 to inject in hex editor.
+into the MDLS as files update with HxD in real time. Files don't need to be closed and re-opened if updated.
+	- Open the MainModel MDLS file, and also open the modified Tex1 to inject in the hex editor.
 	Search for the Tex1 inside the MDLS just like from earlier and highlight the entire Tex1.
 	Tab over to the Tex1 file you want to inject, and Ctrl+A to highlight all, copy (Ctrl+C),
 	then tab back over to the MDLS and paste (Ctrl+V) over the highlighted Tex1.
-	Save as MainModel.bin
+	Save as MainModel.bin. In the 'testing' phase you will be replacing the Tex1
+	directly into the model and checking it before actually creating a patch file.
 	
 8. Use the Model extractor & rebuilder script to rebuild the model with the new MainModel.bin.
+   	- A good trick to make this more efficient is to create a shortcut to the model file so that you don't
+   	  need to navigate out of the main folder you're working out of.
 	- View the model in one of the game's menus such as a dealership and inspect it.
 	To refresh the model, simply hover the game's cursor over to another car and then back again.
-	You'll be bouncing back to step 5 multiple times until all of the colors of the model you want
-	to get picked up by the pat file generator have been found in the PNG.
+	You'll be bouncing back to step 5 multiple times, until all of the relevant pixels in the PNG
+	are found.
 	
-9. Once you have found every relevant pixel in the PNG, you can inject your final iteration of the
+10. Once you have found every relevant pixel in the PNG, you can inject your final iteration of the
 	Tex1 into the MainModel.bin and optionally also change all of the material values in it
 	(in order for the script to pick them up for editing later in the color patch) to begin.
 	The final iteration should have every relevant pixel changed to something that
@@ -107,12 +118,6 @@ into the MDLS as files update with HxD in real time.
 	to make the script populate the color patch with the proper color data.
 	This will generate the patch file with one variaion populated into it.
 
-10. Use the color adder script to add at least one variation to the color patch so that you can test
-	it out.
-
-11. Use the color editor script to export the patch data to a PNG.
-	From here the process is exactly the same as already mentioned
-	with color patch editing. Make a new PNG strip and import it into
-	slot 2, save the file, rebuild the model with the new MainModelColorPatch.pat
-	and add an entry into the spec database and test your model.
+11. From here the process is exactly the same as already explained
+	in [GT4-pat-editor](https://github.com/Silentwarior112/GT4-pat-editor).
 	
