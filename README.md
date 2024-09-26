@@ -3,6 +3,8 @@ Python scripts to automate generation of GT4 color patch files from scratch with
 While the time and effort required is rather high, this allows for custom recoloring of any
 car in Gran Turismo 4 and to a slightly lesser extent any GT game that uses the Tex1 format.
 
+After generating pat files, you will need to edit them with [GT4-pat-editor.](https://github.com/Silentwarior112/GT4-pat-editor)
+
 -- GT4 Color patch generator script --
 Creates GT4 pat files based on the difference between two MDLS models.
 
