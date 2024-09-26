@@ -24,8 +24,8 @@ to help rule out irrelevant pixels.
    This preserves all of the header data.
 
 Usage:
-1. Split the model file using the [Model extractor & rebuilder](https://github.com/Silentwarior112/GT4-pat-editor) script,
-at the very least, extract the MainModel.
+1. Split the model file using the [Model extractor & rebuilder](https://github.com/Silentwarior112/GT4-pat-editor) script.
+At the very least, extract the MainModel.
 
 2. Extract the necessary Tex1 file(s) that are inside the MainModel.bin file.
 	- Many cars have multiple Tex1 files inside their models but
