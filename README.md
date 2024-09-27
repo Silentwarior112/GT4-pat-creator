@@ -33,9 +33,9 @@ At the very least, extract the MainModel.
 	going to be the "big" Tex1, it should be the first one packed 
 	into the model. Look at the byte count value inside the Tex1
 	binary data to determine if it's the "big" one.
-	To find the Tex1, use a hex editor and search for string: Tex1
+	To find the Tex1, use a hex editor and search for string: Tex1.
 	Once found, highlight the first few bytes of it to start the selection
-	and then check to byte count value at 0xC through 0xF to know how much
+	and then check the byte count value at 0xC through 0xF to know how much
 	to select. HxD will show your highlighted length in the bottom right.
 
 	Once the bytes are copied, paste them into a new binary file in the hex
