@@ -104,6 +104,8 @@ into the MDLS as files update with HxD in real time. Files don't need to be clos
 8. Use the Model extractor & rebuilder script to rebuild the model with the new MainModel.bin.
    	- A good trick to make this more efficient is to create a shortcut to the model file so that you don't
    	  need to navigate out of the main folder you're working out of.
+	- For rapid testing, inject the Tex1 directly into the full model in the host filesystem,
+	skipping the need to rebuild it with the script.
 	- View the model in one of the game's menus such as a dealership and inspect it.
 	To refresh the model, simply hover the game's cursor over to another car and then back again.
 	You'll be bouncing back to step 5 multiple times, until all of the relevant pixels in the PNG
