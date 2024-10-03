@@ -8,7 +8,7 @@ palette that is stored inside of a given Tex1 texture.
 
 Creating a black variation of the 1999 Impreza WRC:
 <p align="center">
-  <img width="640" height="360" src="https://github.com/Silentwarior112/GT4-pat-creator/blob/main/black%20imprezawrc.PNG">
+  <img width="640" height="360" src="https://github.com/Silentwarior112/GT4-pat-creator/blob/main/black%20impreza%20wrc.PNG">
 </p>
 
 You will also need [GT4-pat-editor](https://github.com/Silentwarior112/GT4-pat-editor) to get the
