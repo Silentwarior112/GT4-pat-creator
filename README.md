@@ -111,8 +111,8 @@ into the MDLS, as files update with HxD in real time. Files don't need to be clo
 	skipping the need to rebuild it with the script.
 	- For menu models, view the model in one of the game's menus such as a dealership and inspect it.
 	To refresh the model, simply hover the game's cursor over to another car and then back again.
-	- For lod models, go to practice mode on Mid-Field raceway normal, or top speed run in Test course.
-	These two tracks give quick access to view the lower detail lod of the model.
+	- For lod models, go to practice mode on Mid-Field raceway normal, chamonix, and top speed run in Test course.
+	These three tracks give quick access to view the lower detail lods of the model.
 	Test course will pan the camera backward at the beginning which will show the hard transition
 	to the 2nd lod. Mid-Field practice run will provide a replay camera angle that will allow
 	you to view the 2nd lod from all angles. Once control is given to you, drive backwards to
@@ -122,6 +122,9 @@ into the MDLS, as files update with HxD in real time. Files don't need to be clo
 	lod model. For inspecting the main lod, use the 360 degree chase cam cheat code to pan the camera
 	around the car at will. This will also help inspecting menu models as well as it also gives
 	control of the menu model rotation.
+	Chamonix will make it quick to show the 3rd lod which is fairly rare to appear.
+	Drive the track normally until you get toward the start line. At that area, the replay camera
+	will be far enough away to view the 3rd lod.
 
 	You'll be bouncing back to step 5 multiple times, until all of the relevant pixels in the PNG
 	are found.
